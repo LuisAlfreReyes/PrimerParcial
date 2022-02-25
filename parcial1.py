@@ -1,6 +1,8 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import psycopg2
+import random
+
 try:
     conexion = psycopg2.connect(
         host = "localhost",
@@ -68,8 +70,36 @@ def tercerproblema():
     conexion.commit()    
 ###########################################################################################################################################################
 def cuartoproblema():
-    print()
-
+    cursor = conexion.cursor()
+    sali = False
+    while not sali:
+        print("1 para tirar los datos. \n2 para salir")
+        opc = int(input(""))
+        if (opc == 1):
+            while True:
+                    d1 = random.randint(1,6)
+                    d2 = random.randint(1,6)
+                    print("El dado uno tiene: ",d1)
+                    print("El dado dos tiene: ",d2)
+                    try:
+                        if d1 + d2 == 8:
+                            print("Usted ha ganado")
+                            a = "Gano"
+                            cursor.execute("insert into datos4(dado1, dado2, resultado) values(%s,%s,%s);",(d1,d2,a))
+                            conexion.commit()    
+                            break
+                        elif d1 + d2 == 7:
+                            print("Usted ha perdido")
+                            a = "Perdio"
+                            cursor.execute("insert into datos4(dado1, dado2, resultado) values(%s,%s,%s);",(d1,d2,a))
+                            conexion.commit()    
+                            break
+                        else:
+                            print("Sigue lanzando")
+                    except:
+                        break
+        else:
+            break 
 ###########################################################################################################################################################
 def Menu1():#Solicitando valores para menú principal
     correcto = False
@@ -84,8 +114,8 @@ def Menu1():#Solicitando valores para menú principal
 ###########################################################################################################################################################
 salir = False
 while not salir:#Selección de opción del menu principal
-    print("1. Primer Problema \n2. Segundo Problema")
-    print("3. Tercer Problema \n4. Descendente" )
+    print("\n1. Primer Problema \n2. Segundo Problema")
+    print("3. Tercer Problema \n4. Dados" )
     print("5. para salir")
     opcion = Menu1()
     if opcion == 1:

@@ -15,7 +15,35 @@ try:
 except psycopg2.Error as e:
     print("Ocurrir un error en la conexión\n")
     print("Vefifique los parametros")
-
+###########################################################################################################################################################
+def verHistorial1():
+    cursor = conexion.cursor()
+    SQL = 'SELECT*FROM datos;'
+    cursor.execute(SQL)
+    valores = cursor.fetchall()
+    print(valores)
+###########################################################################################################################################################
+def verHistorial2():
+    cursor = conexion.cursor()
+    SQL = 'SELECT*FROM datos;'
+    cursor.execute(SQL)
+    valores = cursor.fetchall()
+    print(valores) 
+###########################################################################################################################################################
+def verHistorial3():
+    cursor = conexion.cursor()
+    SQL = 'SELECT*FROM datos3;'
+    cursor.execute(SQL)
+    valores = cursor.fetchall()
+    print(valores)
+###########################################################################################################################################################
+def verHistorial4():
+    cursor = conexion.cursor()
+    SQL = 'SELECT*FROM datos4;'
+    cursor.execute(SQL)
+    valores = cursor.fetchall()
+    print(valores)           
+###########################################################################################################################################################
 def primerproblema():
     prueba = False
     cursor = conexion.cursor()
@@ -114,9 +142,9 @@ def Menu1():#Solicitando valores para menú principal
 ###########################################################################################################################################################
 salir = False
 while not salir:#Selección de opción del menu principal
-    print("\n1. Primer Problema \n2. Segundo Problema")
-    print("3. Tercer Problema \n4. Dados" )
-    print("5. para salir")
+    print("\n1. Primer Problema \n2. Segundo Problema. \n3. Tercer Problema \n4.Dados")
+    print("5. Historial del primer problema \n6. Historial del segundo problema" )
+    print("7. Historial del tercer problema \n8. Historial del cuarto problema \n9. para salir")
     opcion = Menu1()
     if opcion == 1:
         primerproblema()
@@ -128,6 +156,14 @@ while not salir:#Selección de opción del menu principal
     elif opcion == 4:
         cuartoproblema()
     elif opcion == 5:
+        verHistorial1()
+    elif opcion == 6:
+        verHistorial2
+    elif opcion == 7:
+        verHistorial3()
+    elif opcion == 8:
+        verHistorial4
+    elif opcion == 9:
         salir = True
     else:
         print("\nIngrese una opción valida")
